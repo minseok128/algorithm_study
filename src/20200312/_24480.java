@@ -43,7 +43,7 @@ public class _24480 {
 		int[] orderArr = new int[N + 1];
 		int order = 1;
 
-		for (int i = 1; i <= N; i++) {
+		for (int i = 1; i < N + 1; i++) {
 			nodes[i] = new Node(i);
 		}
 		for (int i = 0; i < M; i++) {
