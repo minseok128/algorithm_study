@@ -36,9 +36,8 @@ int bfs(vector<vector<int>> map)
 						{
 							int dx = k == 0 ? -1 : (k == 1 ? 1 : 0);
 							int dy = k == 2 ? -1 : (k == 3 ? 1 : 0);
-							
-							if (crr.first + dy >= 0 && crr.first + dy < N
-								&& crr.second + dx >= 0 && crr.second + dx < M)
+
+							if (crr.first + dy >= 0 && crr.first + dy < N && crr.second + dx >= 0 && crr.second + dx < M)
 								q.push(make_pair(crr.first + dy, crr.second + dx));
 						}
 					}
@@ -66,7 +65,7 @@ int main()
 	int result = 0, safe = -3;
 	cin >> N >> M;
 	vector<vector<int>> map(N, vector<int>(M, 0));
-	
+
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < M; j++)
@@ -88,8 +87,7 @@ int main()
 					result = safe - bfs(new_map) > result ? safe - bfs(new_map) : result;
 				}
 			}
-		}	
+		}
 	}
 	cout << result << '\n';
 }
-
