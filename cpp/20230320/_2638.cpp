@@ -92,7 +92,7 @@ int main()
 					}
 					if (count >= 2)
 					{
-						cheese--;
+						cheese -= 1;
 						map[i][j] = '2';
 					}
 				}
