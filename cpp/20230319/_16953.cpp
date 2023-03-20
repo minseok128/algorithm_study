@@ -13,7 +13,7 @@ int main()
 	{
 		pair<long long, long long> crr = q.front();
 		q.pop();
-
+		
 		if (crr.first == B)
 		{
 			cout << crr.second << '\n';
