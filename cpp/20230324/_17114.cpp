@@ -3,9 +3,9 @@
 #include <queue>
 using namespace std;
 
-int m, n, o, p, q, r, s, t, u, v, w, box_size, tomato_count, day = 0;
+int m, n, o, p, q, r, s, t, u, v, w, box_size, tomato_count, day;
 vector<int> box;
-vector<int> delta(11);
+vector<int> delta(12);
 
 void bfs()
 {
@@ -22,24 +22,24 @@ void bfs()
 		int crr = q.front();
 		q.pop();
 
-		for(int i = 0; i < 22; i++)
+		for (int i = 0; i < 22; i++)
 		{
 			int sign = i % 2 ? 1 : -1;
 			int new_i = crr + delta[i / 2] * sign;
-			//cout << "crr:" << crr << " new_i:" << new_i << '\n';
+			// cout << "crr:" << crr << " new_i:" << new_i << '\n';
 			if (new_i >= 0 && new_i < box_size)
 			{
-				if (i < 2 && (new_i / m != crr / m))
+				if (new_i / delta[i / 2 + 1] != crr / delta[i / 2 + 1])
 				{
-					//cout << "firbiden:" << " new_i:" << new_i << '\n';
-					continue ;
+					// cout << "firbiden:" << (new_i / delta[i / 2 + 1]) << "&" << (crr / delta[i / 2 + 1]) << " |new_i:" << new_i << '\n';
+					continue;
 				}
 				if (box[new_i] == 0)
 				{
 					tomato_count--;
 					box[new_i] = box[crr] + 1;
 					q.push(new_i);
-					day = max(day, box[new_i]) - 1;
+					day = max(day, box[new_i]);
 				}
 			}
 		}
@@ -54,6 +54,7 @@ int main()
 
 	cin >> m >> n >> o >> p >> q >> r >> s >> t >> u >> v >> w;
 	box_size = m * n * o * p * q * r * s * t * u * v * w;
+	delta[11] = m * n * o * p * q * r * s * t * u * v * w;
 	delta[10] = m * n * o * p * q * r * s * t * u * v;
 	delta[9] = m * n * o * p * q * r * s * t * u;
 	delta[8] = m * n * o * p * q * r * s * t;
@@ -65,7 +66,7 @@ int main()
 	delta[2] = m * n;
 	delta[1] = m;
 	delta[0] = 1;
-	//reverse(delta.begin(), delta.end());
+	// reverse(delta.begin(), delta.end());
 	box = vector<int>(box_size);
 
 	for (int i = 0; i < box_size; i++)
@@ -77,7 +78,7 @@ int main()
 
 	bfs();
 	if (tomato_count == 0)
-		cout << day << '\n';
+		cout << day - 1 << '\n';
 	else
 		cout << "-1\n";
 }
