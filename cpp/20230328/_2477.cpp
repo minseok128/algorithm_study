@@ -24,7 +24,6 @@ int main()
 	{
 		int b = i != 0 ? i - 1 : 5;
 		int f = i != 5 ? i + 1 : 0;
-		// cout << b << "," << f << '\n';
 		if (arr[b][0] == arr[f][0])
 			min_size *= arr[i][1];
 		if (arr[i][0] == 1 || arr[i][0] == 2)
