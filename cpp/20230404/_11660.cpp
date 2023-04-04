@@ -26,7 +26,7 @@ int main()
 	for (int i = 0; i < K; i++)
 	{
 		cin >> y1 >> x1 >> y2 >> x2;
-		// cout << arr[y2][x2] << arr[y2][x1 - 1] << arr[y1 - 1][x2] << arr[y1 - 1][x1 - 1] << '\n';
+		// cout << arr[y2][x2] << "-" << arr[y2][x1 - 1] << "-" << arr[y1 - 1][x2] << "+" << arr[y1 - 1][x1 - 1] << '\n';
 		cout << arr[y2][x2] - arr[y2][x1 - 1] - arr[y1 - 1][x2] + arr[y1 - 1][x1 - 1] << '\n';
 	}
 }
