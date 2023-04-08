@@ -29,9 +29,9 @@ int main()
 		}
 		result[sum] = 1;
 	}
-	for (int i = 0; i < 11; i++)
-		cout << samp[i][0] << ' ';
-	cout << '\n';
+	// for (int i = 0; i < 11; i++)
+	// 	cout << samp[i][0] << ' ';
+	// cout << '\n';
 	for (int i = 0; i < 2048; i++)
 	{
 		if (result[i] == 0)
