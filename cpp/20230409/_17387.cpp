@@ -36,19 +36,48 @@ int main()
 	cin >> b.x >> b.y;
 	cin >> c.x >> c.y;
 	cin >> d.x >> d.y;
+	swap(&a, &b);
+	swap(&c, &d);
 
-	int pa = CCW(a, b, c) * CCW(a, b, d);
-	int pb = CCW(c, d, a) * CCW(c, d, b);
-	if (pa == 0 && pb == 0)
+	int p1 = CCW(a, b, c) * CCW(a, b, d);
+	int p2 = CCW(c, d, a) * CCW(c, d, b);
+	if (p1 == 0 && p2 == 0)
 	{
-		swap(&a, &b);	
-		swap(&c, &d);
+		cout << "this";
 		if (compare(&b, &c) && compare(&d, &a))
 			cout << "1\n";
 		else
 			cout << "0\n";
 	}
-	else if (pa == -1 && pb == -1)
+	else if(CCW(a, b, c) == 0)
+	{
+		if (compare(&c, &a) && compare(&b, &c))
+			cout << "1\n";
+		else
+			cout << "0\n";
+	}
+	else if(CCW(a, b, d) == 0)
+	{
+		if (compare(&d, &a) && compare(&b, &d))
+			cout << "1\n";
+		else
+			cout << "0\n";
+	}
+	else if(CCW(c, d, a) == 0)
+	{
+		if (compare(&a, &c) && compare(&d, &a))
+			cout << "1\n";
+		else
+			cout << "0\n";
+	}
+	else if(CCW(c, d, b) == 0)
+	{
+		if (compare(&b, &c) && compare(&d, &b))
+			cout << "1\n";
+		else
+			cout << "0\n";
+	}
+	else if (p1 == -1 && p2 == -1)
 		cout << "1\n";
 	else
 		cout << "0\n";
