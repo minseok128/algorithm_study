@@ -115,7 +115,6 @@ int cross(Line *l1, Line *l2)
 		return (0);
 }
 
-char result[2000][2000];
 int main()
 {
 	cin.tie(0);
