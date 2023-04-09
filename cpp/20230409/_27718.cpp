@@ -54,28 +54,58 @@ int cross(Line *l1, Line *l2)
 
 	int p1 = CCW(a, b, c) * CCW(a, b, d);
 	int p2 = CCW(c, d, a) * CCW(c, d, b);
+	//cout << "here" <<  a.x << a.y << b.x << b.y << '\n';
+	if (compare(&b, &c) == 2 || compare(&a, &d) == 2)
+	{
+		return (1);
+	}
+	if (compare(&a, &c) == 2)
+	{
+		if (a.x == b.x && a.x == d.x && b.x == d.x)
+		{
+			//if (d.y >= a.y && d.y < b.y)
+				return (3);
+			//return (1);
+		}
+		//cout << "here" <<  (b.y - a.y) * (d.x - a.x) << " " << (d.y - a.y) * (b.x - a.x) << '\n';
+		if((b.y - a.y) * (d.x - a.x) == (d.y - a.y) * (b.x - a.x))
+			return (3);
+		return (1);
+	}
+	if (compare(&b, &d) == 2)
+	{
+		//if (a.x == b.x && a.x == c.x && b.x == c.x)
+		//	return (1);
+		//cout << "here" << '\n';
+		if((b.y - a.y) * (b.x - c.x) == (b.y - c.y) * (b.x - a.x))
+		{
+			//if ()
+			return (3);
+		}
+		return (1);
+	}
 	if (p1 == 0 && p2 == 0)
 	{
-		if (compare(&a, &c) == 2 || compare(&b, &c) == 2)
-		{
-			if (CCW(a, b, d) != 0)
-				return (1);
-			else
-			{
-				
-			}
-		}
-		else if (compare(&a, &d) == 2 || compare(&b, &d) == 2)
-		{
-			if (CCW(a, b, c) != 0)
-			{
-				return (1);
-			}
-		}
+		//if (compare(&a, &c) == 2 || compare(&b, &c) == 2)
+		//{
+		//	if (CCW(a, b, d) != 0)
+		//		return (1);
+		//	else
+		//	{
+		//		
+		//	}
+		//}
+		//else if (compare(&a, &d) == 2 || compare(&b, &d) == 2)
+		//{
+		//	if (CCW(a, b, c) != 0)
+		//	{
+		//		return (1);
+		//	}
+		//}
 		//if (compare())
 		//	return (3);
-		//if (compare(&b, &c) && compare(&d, &a))
-		//	return (3);
+		if (compare(&b, &c) && compare(&d, &a))
+			return (3);
 		else
 			return (0);
 	}
