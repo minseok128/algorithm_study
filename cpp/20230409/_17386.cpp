@@ -43,6 +43,7 @@ int main()
 	int p2 = CCW(c, d, a) * CCW(c, d, b);
 	if (p1 == 0 && p2 == 0)
 	{
+		cout << "this";
 		if (compare(&b, &c) && compare(&d, &a))
 			cout << "1\n";
 		else
