@@ -2,11 +2,13 @@
 #include <vector>
 using namespace std;
 
-typedef struct {
+typedef struct
+{
 	long long x, y;
 } Point;
 
-typedef struct {
+typedef struct
+{
 	Point p1, p2;
 } Line;
 
@@ -60,13 +62,13 @@ int cross(Line *l1, Line *l2)
 	{
 		if (a.x == b.x && a.x == d.x && b.x == d.x)
 			return (3);
-		if((b.y - a.y) * (d.x - a.x) == (d.y - a.y) * (b.x - a.x))
+		if ((b.y - a.y) * (d.x - a.x) == (d.y - a.y) * (b.x - a.x))
 			return (3);
 		return (1);
 	}
 	if (compare(&b, &d) == 2)
 	{
-		if((b.y - a.y) * (b.x - c.x) == (b.y - c.y) * (b.x - a.x))
+		if ((b.y - a.y) * (b.x - c.x) == (b.y - c.y) * (b.x - a.x))
 			return (3);
 		return (1);
 	}
@@ -77,28 +79,28 @@ int cross(Line *l1, Line *l2)
 		else
 			return (0);
 	}
-	else if(CCW(a, b, c) == 0)
+	else if (CCW(a, b, c) == 0)
 	{
 		if (compare(&c, &a) && compare(&b, &c))
 			return (4);
 		else
 			return (0);
 	}
-	else if(CCW(a, b, d) == 0)
+	else if (CCW(a, b, d) == 0)
 	{
 		if (compare(&d, &a) && compare(&b, &d))
 			return (4);
 		else
 			return (0);
 	}
-	else if(CCW(c, d, a) == 0)
+	else if (CCW(c, d, a) == 0)
 	{
 		if (compare(&a, &c) && compare(&d, &a))
 			return (4);
 		else
 			return (0);
 	}
-	else if(CCW(c, d, b) == 0)
+	else if (CCW(c, d, b) == 0)
 	{
 		if (compare(&b, &c) && compare(&d, &b))
 			return (4);
@@ -126,9 +128,11 @@ int main()
 	if (result == 1)
 	{
 		if (compare(&(l1.p1), &(l2.p1)) == 2 || compare(&(l1.p1), &(l2.p2)) == 2)
-			cout << "1\n" << l1.p1.x << " " << l1.p1.y << '\n';
+			cout << "1\n"
+				 << l1.p1.x << " " << l1.p1.y << '\n';
 		else
-			cout << "1\n" << l1.p2.x << " " << l1.p2.y << '\n';
+			cout << "1\n"
+				 << l1.p2.x << " " << l1.p2.y << '\n';
 	}
 	else if (result == 2 || result == 4)
 	{
@@ -143,7 +147,8 @@ int main()
 		x = (e * d - b * f) / (long double)(a * d - b * c);
 		y = (a * f - e * c) / (long double)(a * d - b * c);
 		cout.precision(17);
-		cout << "1\n" << x << " " << y << '\n';
+		cout << "1\n"
+			 << x << " " << y << '\n';
 	}
 	else if (result == 3)
 		cout << "1\n";
