@@ -163,10 +163,10 @@ int main()
 			cout << "T\n";
 		else
 		{
-			while (i < 4)
+			for (i = 0; i < 4; i++)
 			{
 				swap(&(R[i].p1), &(R[i].p2));
-				if (cross(&l1, &(R[i++])) != 0)
+				if (cross(&l1, &(R[i])) != 0)
 					break;
 			}
 			i == 4 ? cout << "F\n" : cout << "T\n";
