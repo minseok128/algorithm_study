@@ -4,21 +4,20 @@
 using namespace std;
 
 vector<pair<int, int>> cube(6);
-int map[8][8], sx, sy = -1, r1, r2[] = {5, 3, 4, 1, 2, 0};
-int dy[] = {-1, 0, 1, 0}, dx[] = {0, -1, 0, 1};
-int s_info[6][4] = {{3, 4, 1, 2}, {0, 4, 5, 2}, {0, 1, 5, 3}, {0, 2, 5, 4}, {0, 3, 5, 1}, {1, 4, 3, 2}};
+int map[8][8], sx, sy = -1, r1, r2[] = {5, 3, 4, 1, 2, 0}, dy[] = {-1, 0, 1, 0}, dx[] = {0, -1, 0, 1};
+int info[6][4] = {{3, 4, 1, 2}, {0, 4, 5, 2}, {0, 1, 5, 3}, {0, 2, 5, 4}, {0, 3, 5, 1}, {1, 4, 3, 2}};
 
-typedef struct ele {
-	int y, x, num, prev_num, prev_s;
-	ele(int Y, int X, int N, int PN, int S) : y(Y), x(X), num(N), prev_num(PN), prev_s(S) {};
+typedef struct ele
+{
+	int y, x, num, pn, ps;
+	ele(int Y, int X, int N, int PN, int S) : y(Y), x(X), num(N), pn(PN), ps(S){};
 } Ele;
 
 int main()
 {
 	cin.tie(0);
-	cout.tie(0);
 	ios::sync_with_stdio(0);
-	
+
 	for (int i = 1; i < 7; i++)
 		for (int j = 1; j < 7; j++)
 		{
@@ -38,25 +37,19 @@ int main()
 	{
 		Ele crr = q.front();
 		q.pop();
-		//cout << "\n" << crr.num << '\n';
-		//for (int i = 0; i < 6; i++)
-		//	cout << cube[i].first << ' ';
-		//cout << "\n";
 
-		for (int i = 0; i < 4; i ++)
+		for (int i = 0; i < 4; i++)
 		{
 			int new_y = crr.y + dy[i], new_x = crr.x + dx[i], tmp = 0;
 			for (int j = 0; j < 4; j++)
-				if (s_info[crr.num][j] == crr.prev_num)
+				if (info[crr.num][j] == crr.pn)
 					tmp = j;
-			int new_num = s_info[crr.num][(i + tmp + crr.prev_s) % 4];
-			//cout<< i << " tmp:" << tmp << " new:"<< new_num << " here\n";
+			int new_num = info[crr.num][(i + tmp + crr.ps) % 4];
 
 			if (map[new_y][new_x] != 0 && cube[new_num].first != 7)
 			{
 				if (map[new_y][new_x] == 1)
 					r1 = new_num;
-				//cout << "puhs:" << new_num << '\n';
 				cube[new_num].first = 7;
 				cube[new_num].second = map[new_y][new_x];
 				q.push(Ele(new_y, new_x, new_num, crr.num, (i + 2 * (i % 2 == 0)) % 4));
