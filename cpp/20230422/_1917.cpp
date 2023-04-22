@@ -19,6 +19,7 @@ int main()
 
 	for (int k = 0; k < 3; k++)
 	{
+		sy = -1;
 		vector<pair<int, int>> cube(6);
 		for (int i = 1; i < 7; i++)
 			for (int j = 1; j < 7; j++)
@@ -56,15 +57,15 @@ int main()
 				}
 			}
 		}
-
 		int f = 1;
 		for (int i = 0; i < 6; i++)
 			if (cube[i].first == 0)
 			{
 				cout << "no\n";
 				f = 0;
+				break;
 			}
 		if (f)
-			cout << "yes" << '\n';
+			cout << "yes\n";
 	}
 }
