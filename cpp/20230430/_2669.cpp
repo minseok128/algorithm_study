@@ -95,9 +95,6 @@ int main()
 		}
 		sort(arr.begin(), arr.end(), compare);
 		arr.emplace_back(sp);
-		//for (int i = 0; i <= N; i++)
-		//	cout << i << ":" << arr[i].x << "," << arr[i].y << '\n';
-		//cout << "sp:" << sp.x << ',' << sp.y << '\n';
 		convex();
 	}
 }
