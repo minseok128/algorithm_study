@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
-#include <stack>
+#include <deque>
 using namespace std;
 
 typedef struct
@@ -25,7 +25,7 @@ int compare(Point a, Point b)
 			return (a.x < b.x);
 		return (a.y > b.y);
 	}
-	return (ar < br);
+	return (ar > br);
 }
 
 int ccw(Point *a, Point *b, Point *c)
@@ -38,37 +38,37 @@ int ccw(Point *a, Point *b, Point *c)
 
 void convex()
 {
-	stack<Point> s;
-	s.push(arr[0]);
-	s.push(arr[1]);
+	deque<Point> s;
+	s.push_back(arr[0]);
+	s.push_back(arr[1]);
 
 	for (int i = 2; i <= N && !s.empty(); i++)
 	{
 		Point p1, p2;
-		p2 = s.top();
-		s.pop();
-		p1 = s.top();
-		s.pop();
+		p2 = s.back();
+		s.pop_back();
+		p1 = s.back();
 		int c = ccw(&p1, &p2, &arr[i]);
-		s.push(p1);
-		if (c == 1)
+		if (c == -1)
 		{
-			s.push(p2);
-			s.push(arr[i]);
+			s.push_back(p2);
+			s.push_back(arr[i]);
 		}
-		else if (c == -1)
+		else if (c == 1)
 			i--;
 		else if ((p1.y - p2.y) * (p1.y - p2.y) + (p1.x - p2.x) * (p1.x - p2.x) > (p1.y - arr[i].y) * (p1.y - arr[i].y) + (p1.x - arr[i].x) * (p1.x - arr[i].x))
-			s.push(p2);
+			s.push_back(p2);
 		else
-			s.push(arr[i]);
+			s.push_back(arr[i]);
 	}
+	if (s.size() == 2)
+		s.push_back(s.back());
 	cout << s.size() - 1 << '\n';
 	while (s.size() != 1)
 	{
-		Point p = s.top();
-		s.pop();
-		cout << p.x << ',' << p.y << '\n';
+		Point p = s.front();
+		s.pop_front();
+		cout << p.x << ' ' << p.y << '\n';
 	}
 }
 
@@ -78,21 +78,26 @@ int main()
 	cout.tie(0);
 	ios::sync_with_stdio(0);
 
-	sp.y = -21;
-	sp.x = -21;
-	cin >> N;
-	for (int i = 0; i < N; i++)
+	int K;
+	for (cin >> K; K > 0; K--)
 	{
-		Point np;
-		cin >> np.x >> np.y;
-		arr.emplace_back(np);
-		if (np.y > sp.y || (np.y == sp.y && np.x < sp.x))
-			sp = np;
+		arr.clear();
+		sp.y = -21;
+		sp.x = -21;
+		cin >> N;
+		for (int i = 0; i < N; i++)
+		{
+			Point np;
+			cin >> np.x >> np.y;
+			arr.emplace_back(np);
+			if (np.y > sp.y || (np.y == sp.y && np.x < sp.x))
+				sp = np;
+		}
+		sort(arr.begin(), arr.end(), compare);
+		arr.emplace_back(sp);
+		//for (int i = 0; i <= N; i++)
+		//	cout << i << ":" << arr[i].x << "," << arr[i].y << '\n';
+		//cout << "sp:" << sp.x << ',' << sp.y << '\n';
+		convex();
 	}
-	sort(arr.begin(), arr.end(), compare);
-	arr.emplace_back(sp);
-	// for (int i = 0; i <= N; i++)
-	//	cout << i << ":" << arr[i].x << "," << arr[i].y << '\n';
-	// cout << "sp:" << sp.x << ',' << sp.y << '\n';
-	convex();
 }
