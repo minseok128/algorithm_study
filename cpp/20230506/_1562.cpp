@@ -21,12 +21,10 @@ int main()
 		{
 			if (j != 0)
 				for (int k = 0; k < 1024; k++)
-					if (dp[i - 1][j - 1][k])
-						dp[i][j][k | (1 << j)] += dp[i - 1][j - 1][k] % mod;
+					dp[i][j][k | (1 << j)] += dp[i - 1][j - 1][k] % mod;
 			if (j != 9)
 				for (int k = 0; k < 1024; k++)
-					if (dp[i - 1][j + 1][k])
-						dp[i][j][k | (1 << j)] += dp[i - 1][j + 1][k] % mod;
+					dp[i][j][k | (1 << j)] += dp[i - 1][j + 1][k] % mod;
 		}
 	}
 	long long res = 0;
