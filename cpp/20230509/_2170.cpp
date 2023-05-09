@@ -16,7 +16,6 @@ int main()
 	for (int i = 0; i < N; i++)
 		cin >> arr[i].first >> arr[i].second;
 	sort(arr.begin(), arr.end());
-	cout << "\n\n";
 	
 	vector<pair<int, int>> sarr;
 	sarr.emplace_back(arr[0]);
@@ -36,9 +35,6 @@ int main()
 	}
 
 	long long res = 0;
-
-	for (int i = 0; i < sarr.size(); i++)
-		cout << sarr[i].first << ',' << sarr[i].second << '\n';
 	for (int i = 0; i < sarr.size(); i++)
 		res += sarr[i].second - sarr[i].first;
 	cout << res << '\n';
