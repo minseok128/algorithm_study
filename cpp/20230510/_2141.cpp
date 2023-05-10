@@ -4,7 +4,7 @@
 using namespace std;
 
 int N;
-vector<pair<long long, long long>> arr;
+vector<pair<int, int>> arr;
 
 int main()
 {
@@ -20,12 +20,12 @@ int main()
 		cin >> arr[i].first >> arr[i].second;
 		people += arr[i].second;
 	}
-	// people += people % 2;
+	people += people % 2;
 	sort(arr.begin(), arr.end());
 	for (int i = 0; i < N; i++)
 	{
 		crr += arr[i].second;
-		if (crr >= (people + 1) / 2)
+		if (crr >= people / 2)
 		{
 			cout << arr[i].first << '\n';
 			return (0);
