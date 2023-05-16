@@ -40,13 +40,12 @@ int main()
 			{
 				cnt++;
 				size = 1;
-				q.push({y , x});
+				q.push({y, x});
 				map[y][x] = cnt;
 				while (!q.empty())
 				{
 					pair<int, int> crr = q.front();
 					q.pop();
-					
 					for (int i = 0; i < 4; i++)
 					{
 						int new_y = crr.first + dy[i];
@@ -84,7 +83,7 @@ int main()
 					size += island_size[*it];
 				cout << size % 10;
 			}
-			else 
+			else
 				cout << '0';
 		}
 		cout << '\n';
