@@ -1,13 +1,10 @@
 #include <iostream>
-#include <vector>
 #include <queue>
 #include <cmath>
 using namespace std;
 
 int N, K, result = -1;
-int subin[500'001];
-int subin_check[500'001];
-int check[500'001][2];
+int subin[500'001], check[500'001][2];
 
 int main()
 {
@@ -31,18 +28,18 @@ int main()
 	check[N][0] = 1;
 	while (!q.empty())
 	{
-		int crr_x = q.front().first, crr_t = q.front().second;
+		int x = q.front().first, t = q.front().second;
 		q.pop();
 
 		for (int i = 0; i < 3; i++)
 		{
-			int new_x = i ? (i == 1 ? crr_x + 1 : crr_x * 2) : crr_x - 1, new_t = crr_t + 1;
-			if (new_x >= 0 && new_x <= 500'000 && !check[new_x][new_t % 2])
+			int nx = i ? (i == 1 ? x + 1 : x * 2) : x - 1, nt = t + 1;
+			if (nx >= 0 && nx <= 500'000 && !check[nx][nt % 2])
 			{
-				if (subin[new_x] >= new_t && subin[new_x] % 2 == new_t % 2)
-					result = result == -1 ? subin[new_x] : min(subin[new_x], result);
-				check[new_x][new_t % 2] = 1;
-				q.push({new_x, new_t});
+				if (subin[nx] >= nt && subin[nx] % 2 == nt % 2)
+					result = result == -1 ? subin[nx] : min(subin[nx], result);
+				check[nx][nt % 2] = 1;
+				q.push({nx, nt});
 			}
 		}
 	}
