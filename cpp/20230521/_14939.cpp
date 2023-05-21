@@ -9,10 +9,6 @@ int dy[] = {0, 1, -1, 0, 0}, dx[] = {0, 0, 0, 1, -1};
 
 int main()
 {
-	cin.tie(0);
-	cout.tie(0);
-	ios::sync_with_stdio(0);
-
 	char tmp;
 	for (int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
