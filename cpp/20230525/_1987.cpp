@@ -34,7 +34,6 @@ int main ()
 	{
 		crr = s.top();
 		s.pop();
-		//cout << crr.y << ' ' << crr.x << ' ' << crr.bits.to_string() << '\n';
 		for (int i = 0; i < 4; i++)
 		{
 			int new_y = crr.y + dy[i], new_x = crr.x + dx[i];
