@@ -20,7 +20,8 @@ struct Token {
 using Tokensit = vector<Token>::iterator;
 
 int g_case_num;
-char check[67'108'864], use[26];
+char check[67'108'864], use[26], link[26];
+vector<char> used_char;
 
 struct Node {
 	virtual int	eval(void) = 0;
@@ -44,7 +45,7 @@ struct S_Var : public Node {
 	{
 		use[num] = 1;
 		// cout << g_case_num  << ":" << (g_case_num & (1 << this->num) ? 1 : 0) << "\n";
-		return (g_case_num & (1 << this->num) ? 1 : 0);
+		return (g_case_num & (1 << link[this->num]) ? 1 : 0);
 	}
 };
 
@@ -141,8 +142,6 @@ int p_exoression(Tokensit it_bigin, Tokensit it_end, Node **ast)
 	return (token_cnt);
 }
 
-vector<char> used_char;
-
 int main()
 {
 	int N, total_N;
@@ -150,49 +149,53 @@ int main()
 
 	cin >> N >> str;
 	vector<Token> tokens = tokenize(str);
-	int res = 0, used_cnt, unused_cnt;
+	int res = 0, used_cnt, unused_cnt, tmp_res;
 	char used_char_arr[26];
 	for (int j = 0; j < N; j++)
 		if (use[j])
+		{
+			link[j] = used_char.size();
 			used_char.emplace_back(j);
+		}
 	used_cnt = used_char.size();
 	unused_cnt = N - used_cnt;
 
 	Node *ast;
 	p_exoression(tokens.begin(), tokens.end(), &ast);
 
-	// total_N = 1 << (N);
-	// for (int i = 0; i < total_N; i++)
-	// {
-	// 	if (check[i] == 0)
-	// 	{
-	// 		bzero(use, 26);
-	// 		g_case_num = i;
-	// 		tmp_res = ast->eval();
-	// 		if (tmp_res == 0)
-	// 		{
-	// 			int un_used_cnt = 0;
-	// 			for (int j = 0; j < N; j++)
-	// 				if (!use[j])
-	// 				{
-	// 					used_char_arr[un_used_cnt] = j;
-	// 					un_used_cnt++;
-	// 				}
-	// 			for (int j = 0; j < (1 << un_used_cnt); j++)
-	// 			{
-	// 				int tmp_i = i;
-	// 				for (int k = 0; k < un_used_cnt; k++)
-	// 				{
-	// 					if (j & (1 << k))
-	// 						tmp_i |= (1 << used_char_arr[k]);
-	// 				}
-	// 				check[tmp_i] = 1;
-	// 			}
-	// 			cout << un_used_cnt << '\n';
-	// 			res += 1 << un_used_cnt;
-	// 		}
-	// 		// cout << '\n';
-	// 	}
-	// }
-	// cout << res << '\n';
+	total_N = 1 << (used_cnt);
+	for (int i = 0; i < total_N; i++)
+	{
+		if (check[i] == 0)
+		{
+			bzero(use, 26);
+			g_case_num = i;
+			tmp_res = ast->eval();
+			if (tmp_res == 0)
+			{
+				int un_used_cnt = 0;
+				for (int j = 0; j < N; j++)
+					if (!use[j] && link[j])
+					{
+						used_char_arr[un_used_cnt] = j;
+						un_used_cnt++;
+					}
+				for (int j = 0; j < (1 << un_used_cnt); j++)
+				{
+					int tmp_i = i;
+					for (int k = 0; k < un_used_cnt; k++)
+					{
+						if (j & (1 << k))
+							tmp_i |= (1 << used_char_arr[k]);
+					}
+					check[tmp_i] = 1;
+				}
+				//cout << un_used_cnt << '\n';
+				res += 1 << un_used_cnt;
+			}
+			// cout << '\n';
+		}
+	}
+	res *= (1 << unused_cnt);
+	cout << res << '\n';
 }
