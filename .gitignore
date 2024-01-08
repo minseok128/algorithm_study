@@ -1,6 +1,7 @@
 .vscode
 .DS_Store
 *.out
+samsum_*
 
 # Compiled class file
 *.class
