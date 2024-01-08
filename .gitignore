@@ -1,7 +1,7 @@
 .vscode
 .DS_Store
 *.out
-samsum_*
+samsung*
 
 # Compiled class file
 *.class
