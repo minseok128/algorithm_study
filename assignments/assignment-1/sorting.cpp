@@ -6,6 +6,18 @@ int	print_error(const std::string &msg)
 	return (1);
 }
 
+void	print_array(vector<int> &arr, ofstream &ofile, steady_clock::time_point start)
+{
+	int	size = arr.size() - 1;
+
+	cout << "insertion: "
+		<< duration_cast<microseconds>(high_resolution_clock::now() - start).count()
+		<< "ms\n";
+	for (int i = 0; i < size; ++i)
+		ofile << arr[i] << " ";
+	ofile << arr[size];
+}
+
 int main(int ac, char **av)
 {
 	if (ac != 3)
@@ -26,10 +38,7 @@ int main(int ac, char **av)
 		ifile >> base_arr[i];
 	ifile.close();
 
-
-	for (int num : base_arr)
-		std::cout << num << ' ';
-	std::cout << '\n';
+	insertion_sort(base_arr, ofile);
 
 	return 0;
 }
