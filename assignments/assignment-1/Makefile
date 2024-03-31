@@ -1,8 +1,8 @@
-CC			:= cc
-FLAG		:= -Wall -Wextra -Werror
+CC			:= c++
+FLAG		:= -Wall -Wextra -Werror -std=c++17
 
 DIR			:= ./
-BASE		:= sorting merge insertion merge_insertion
+BASE		:= sorting #merge insertion merge_insertion
 SRC			:= $(addprefix $(DIR), $(addsuffix .c, $(BASE)))
 OBJ			:= $(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 NAME		:= sorting
@@ -16,11 +16,9 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAG) -I$(dir $<) -c $< -o $@
 
 run : $(NAME)
-	./$(NAME)
+	./$(NAME) input.txt output.txt
 
 clean :
 	rm -f $(OBJ) $(NAME)
-
-re : fclean all
 
 .PHONY : all clean fclean re
