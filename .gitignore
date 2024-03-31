@@ -2,8 +2,8 @@
 .DS_Store
 *.out
 samsung*
-*.txt
 *.o
+*.txt
 
 # Compiled class file
 *.class
