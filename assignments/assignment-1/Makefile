@@ -2,7 +2,7 @@ CC			:= c++
 FLAG		:= -Wall -Wextra -Werror -std=c++17
 
 DIR			:= ./
-BASE		:= sorting #merge insertion merge_insertion
+BASE		:= sorting insertion #merge merge_insertion
 SRC			:= $(addprefix $(DIR), $(addsuffix .c, $(BASE)))
 OBJ			:= $(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 NAME		:= sorting
