@@ -2,8 +2,10 @@
 .DS_Store
 *.out
 samsung*
+
 *.o
 *.txt
+sorting
 
 # Compiled class file
 *.class
