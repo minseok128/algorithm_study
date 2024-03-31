@@ -19,4 +19,5 @@ void	insertion_sort(vector<int> arr, ofstream &ofile)
 	}
 
 	print_array(arr, ofile, start);
+	ofile << '\n';
 }
