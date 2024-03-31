@@ -25,7 +25,6 @@ int main(int ac, char **av)
 
 	ifstream	ifile(av[1]);
 	ofstream	ofile(av[2]);
-	string		line;
 	vector<int>	base_arr;
 	int			size;
 	
