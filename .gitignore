@@ -3,6 +3,7 @@
 *.out
 samsung*
 *.txt
+*.o
 
 # Compiled class file
 *.class
