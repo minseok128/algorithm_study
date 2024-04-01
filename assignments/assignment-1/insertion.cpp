@@ -4,13 +4,13 @@ void	insertion_sort(vector<int> arr, ofstream &ofile)
 {
 	auto	start = high_resolution_clock::now();
 	int		size = arr.size();
+	int		key, i, j;
 
-	for (int i = 1; i < size; ++i)
+	for (i = 1; i < size; ++i)
 	{
-		int	key = arr[i];
-		int	j = i - 1;
-
-		while (j >= 0 && arr[j] > key)
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && key < arr[j])
 		{
 			arr[j + 1] = arr[j];
 			--j;
