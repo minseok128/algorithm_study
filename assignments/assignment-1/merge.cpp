@@ -1,6 +1,6 @@
 #include "sorting.hpp"
 
-void	conquer(vector<int> &arr, vector<int> &tmp, int left, int right, int mid)
+static void	conquer(vector<int> &arr, vector<int> &tmp, int left, int right, int mid)
 {
 	int			i = 0, l = left, r = mid + 1;
 
@@ -24,7 +24,7 @@ void	conquer(vector<int> &arr, vector<int> &tmp, int left, int right, int mid)
 		arr[i] = tmp[i - left];
 }
 
-void	devide(vector<int> &arr, vector<int> &tmp, int l, int r)
+static void	devide(vector<int> &arr, vector<int> &tmp, int l, int r)
 {
 	int	m;
 
