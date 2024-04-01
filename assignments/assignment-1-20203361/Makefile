@@ -2,7 +2,7 @@ CC			:= c++
 FLAG		:= -Wall -Wextra -Werror -O3 -std=c++17
 
 DIR			:= ./
-BASE		:= sorting insertion merge merge_insertion
+BASE		:= source_code
 SRC			:= $(addprefix $(DIR), $(addsuffix .cpp, $(BASE)))
 OBJ			:= $(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 NAME		:= sorting
@@ -15,8 +15,7 @@ $(NAME): $(OBJ)
 %.o : %.cpp
 	$(CC) $(FLAG) -I$(dir $<) -c $< -o $@
 
-run : $(NAME)
-	python3 -u input_generator.py
+run :
 	./$(NAME) input.txt output.txt
 
 clean :

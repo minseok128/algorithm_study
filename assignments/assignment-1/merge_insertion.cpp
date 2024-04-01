@@ -37,7 +37,7 @@ static void	mi_conquer(vector<int> &arr, vector<int> &tmp, int left, int right, 
 		while (l <= mid)
 			tmp[i++] = arr[l++];
 
-	for (i = left; i <= right; i++)
+	for (i = left; i <= right; ++i)
 		arr[i] = tmp[i - left];
 }
 
