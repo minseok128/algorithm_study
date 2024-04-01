@@ -6,7 +6,7 @@ int	print_error(const std::string &msg)
 	return (1);
 }
 
-void	print_array(vector<int> &arr, ofstream &ofile, steady_clock::time_point start)
+void	print_array(vector<int> &arr, ofstream &ofile, steady_clock::time_point &start)
 {
 	int	size = arr.size() - 1;
 
