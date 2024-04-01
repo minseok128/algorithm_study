@@ -65,5 +65,4 @@ void	merge_insertion_sort(vector<int> &base_arr, ofstream &ofile)
 	mi_devide(arr, tmp, 0, size - 1);
 
 	print_array("merge_insertion", arr, ofile, start);
-	ofile << '\n';
 }
