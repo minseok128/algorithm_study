@@ -1,26 +1,20 @@
 #include "sorting.hpp"
 
-static void	mi_insertion(vector<int> &base_arr, ofstream &ofile)
+static void	mi_insertion(vector<int> &arr, int l, int r)
 {
-	auto		start = high_resolution_clock::now();
-	vector<int>	arr(base_arr);
-	int			size = arr.size();
 	int			key, i, j;
 
-	for (i = 1; i < size; ++i)
+	for (i = l + 1; i <= r; ++i)
 	{
 		key = arr[i];
 		j = i - 1;
-		while (j >= 0 && key < arr[j])
+		while (j >= l && key < arr[j])
 		{
 			arr[j + 1] = arr[j];
 			--j;
 		}
 		arr[j + 1] = key;
 	}
-
-	print_array("insertion", arr, ofile, start);
-	ofile << '\n';
 }
 
 static void	mi_conquer(vector<int> &arr, vector<int> &tmp, int left, int right, int mid)
@@ -51,8 +45,11 @@ static void	mi_devide(vector<int> &arr, vector<int> &tmp, int l, int r)
 {
 	int	m;
 
-	if (l >= r)
+	if (r - l <= 10)
+	{
+		mi_insertion(arr, l, r);
 		return ;
+	}
 	m = (l + r) / 2;
 	mi_devide(arr, tmp, l, m);
 	mi_devide(arr, tmp, m + 1, r);
