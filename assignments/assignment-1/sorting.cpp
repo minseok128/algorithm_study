@@ -37,9 +37,9 @@ int main(int ac, char **av)
 		ifile >> base_arr[i];
 	ifile.close();
 
-
-	merge_sort(base_arr, ofile);
 	insertion_sort(base_arr, ofile);
+	merge_sort(base_arr, ofile);
+	merge_insertion_sort(base_arr, ofile);
 
-	return 0;
+	return (0);
 }
