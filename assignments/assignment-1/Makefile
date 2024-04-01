@@ -1,5 +1,5 @@
 CC			:= c++
-FLAG		:= -Wall -Wextra -Werror -O3 -std=c++17
+FLAG		:= -Wall -Wextra -Werror -std=c++17
 
 DIR			:= ./
 BASE		:= sorting insertion merge #merge_insertion
@@ -16,6 +16,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAG) -I$(dir $<) -c $< -o $@
 
 run : $(NAME)
+	python3 -u input_generator.py
 	./$(NAME) input.txt output.txt
 
 clean :
