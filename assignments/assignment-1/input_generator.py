@@ -1,7 +1,7 @@
 import random
 
-SIZE = 10000
-R_RANGE = (0, 500)
+SIZE = 100000
+R_RANGE = (0, 10000)
 
 with open("input.txt", "w") as file:
     file.write(f'{SIZE}\n')
