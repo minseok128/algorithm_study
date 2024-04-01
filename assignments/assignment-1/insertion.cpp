@@ -18,6 +18,6 @@ void	insertion_sort(vector<int> arr, ofstream &ofile)
 		arr[j + 1] = key;
 	}
 
-	print_array(arr, ofile, start);
+	print_array("insertion", arr, ofile, start);
 	ofile << '\n';
 }
