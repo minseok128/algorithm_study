@@ -21,7 +21,7 @@ void	print_array(vector<int> &arr, ofstream &ofile, steady_clock::time_point sta
 int main(int ac, char **av)
 {
 	if (ac != 3)
-		return (print_error("usage: ./sorting [file name] [sorting algorithm]"));
+		return (print_error("usage: ./sorting [input file] [output file]"));
 
 	ifstream	ifile(av[1]);
 	ofstream	ofile(av[2]);
