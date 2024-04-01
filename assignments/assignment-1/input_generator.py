@@ -1,6 +1,6 @@
 import random
 
-SIZE = 100
+SIZE = 10000
 R_RANGE = (0, 500)
 
 with open("input.txt", "w") as file:
