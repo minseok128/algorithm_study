@@ -1,10 +1,11 @@
 #include "sorting.hpp"
 
-void	insertion_sort(vector<int> arr, ofstream &ofile)
+void	insertion_sort(vector<int> &base_arr, ofstream &ofile)
 {
-	auto	start = high_resolution_clock::now();
-	int		size = arr.size();
-	int		key, i, j;
+	auto		start = high_resolution_clock::now();
+	vector<int>	arr(base_arr);
+	int			size = arr.size();
+	int			key, i, j;
 
 	for (i = 1; i < size; ++i)
 	{

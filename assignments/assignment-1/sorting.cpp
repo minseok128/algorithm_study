@@ -7,7 +7,7 @@ int	print_error(const std::string &msg)
 }
 
 void	print_array(string type, vector<int> &arr,
-	ofstream &ofile, steady_clock::time_point &start)
+	ofstream &ofile, high_resolution_clock::time_point &start)
 {
 	int	size = arr.size() - 1;
 
@@ -37,8 +37,9 @@ int main(int ac, char **av)
 		ifile >> base_arr[i];
 	ifile.close();
 
-	insertion_sort(base_arr, ofile);
+
 	merge_sort(base_arr, ofile);
+	insertion_sort(base_arr, ofile);
 
 	return 0;
 }

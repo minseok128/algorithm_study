@@ -1,8 +1,7 @@
 #include "sorting.hpp"
 
-void	conquer(vector<int> &arr, int left, int right, int mid)
+void	conquer(vector<int> &arr, vector<int> &tmp, int left, int right, int mid)
 {
-	vector<int>	tmp(right - left + 1);
 	int			i = 0, l = left, r = mid + 1;
 
 	while (l <= mid && r <= right)
@@ -25,24 +24,25 @@ void	conquer(vector<int> &arr, int left, int right, int mid)
 		arr[i] = tmp[i - left];
 }
 
-void	devide(vector<int> &arr, int l, int r)
+void	devide(vector<int> &arr, vector<int> &tmp, int l, int r)
 {
 	int	m;
 
 	if (l >= r)
 		return ;
 	m = (l + r) / 2;
-	devide(arr, l, m);
-	devide(arr, m + 1, r);
-	conquer(arr, l, r, m);
+	devide(arr, tmp, l, m);
+	devide(arr, tmp, m + 1, r);
+	conquer(arr, tmp, l, r, m);
 }
 
-void	merge_sort(vector<int> arr, ofstream &ofile)
+void	merge_sort(vector<int> &base_arr, ofstream &ofile)
 {
-	auto	start = high_resolution_clock::now();
-	int		size = arr.size();
+	auto		start = high_resolution_clock::now();
+	int			size = base_arr.size();
+	vector<int>	arr(base_arr), tmp(size);
 
-	devide(arr, 0, size - 1);
+	devide(arr, tmp, 0, size - 1);
 
 	print_array("merge", arr, ofile, start);
 	ofile << '\n';

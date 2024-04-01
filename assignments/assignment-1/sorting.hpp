@@ -9,10 +9,10 @@
 using namespace std;
 using namespace std::chrono;
 
-void	insertion_sort(vector<int> arr, ofstream &ofile);
-void	merge_sort(vector<int> arr, ofstream &ofile);
-void	merge_insertion_sort(vector<int> arr, ofstream &ofile);
+void	insertion_sort(vector<int>  &base_arr, ofstream &ofile);
+void	merge_sort(vector<int>  &base_arr, ofstream &ofile);
+void	merge_insertion_sort(vector<int>  &base_arr, ofstream &ofile);
 void	print_array(string type, vector<int> &arr,
-	ofstream &ofile, steady_clock::time_point &start);
+	ofstream &ofile, high_resolution_clock::time_point &start);
 
 #endif
