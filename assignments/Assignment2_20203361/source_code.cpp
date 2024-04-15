@@ -4,11 +4,33 @@
 #include <vector>
 #include <sstream>
 #include <chrono>
+#include <random>
+#include <algorithm>
 using namespace std;
 using namespace std::chrono;
 
+std::random_device rd;
+std::mt19937 gen(rd());
 static void	print_array(string type, vector<int> &arr,
 	ofstream &ofile, high_resolution_clock::time_point &start);
+
+int	q2_partition(vector<int> &arr, int l, int r)
+{
+	std::uniform_int_distribution<> dis(l, r);
+	swap(arr[r], arr[dis(gen)]);
+
+	int	pivot = arr[r];
+	int	i = l - 1;
+
+	for (int j = l; j < r; ++j)
+		if (arr[j] <= pivot)
+		{
+			++i;
+			swap(arr[i], arr[j]);
+		}
+	swap(arr[i + 1], arr[r]);
+	return (i + 1);
+}
 
 int	q1_partition(vector<int> &arr, int l, int r)
 {
@@ -25,26 +47,30 @@ int	q1_partition(vector<int> &arr, int l, int r)
 	return (i + 1);
 }
 
-void	q1_divied(vector<int> &arr, int l, int r)
+void	quick_divied(vector<int> &arr, int l, int r,
+	int (*f)(vector<int> &arr, int l, int r))
 {
 	int	p;
 
 	if (l >= r)
 		return ;
-	p = q1_partition(arr, l, r);
-	q1_divied(arr, l, p - 1);
-	q1_divied(arr, p + 1, r);
+	p = f(arr, l, r);
+	quick_divied(arr, l, p - 1, f);
+	quick_divied(arr, p + 1, r, f);
 }
 
-void	quick_sort_1(vector<int> & base_arr, ofstream &ofile)
+
+void	quick_sort(vector<int> &base_arr, ofstream &ofile,
+	int (*f)(vector<int> &arr, int l, int r))
 {
 	auto		start = high_resolution_clock::now();
 	int			size = base_arr.size();
 	vector<int>	arr(base_arr), tmp(size);
 
-	q1_divied(arr, 0, size - 1);
+	quick_divied(arr, 0, size - 1, f);
 
-	print_array("quick_sort_1", arr, ofile, start);
+	print_array("time", arr, ofile, start);
+	ofile << '\n';
 }
 
 // --------utils--------
@@ -86,7 +112,8 @@ int main(int ac, char **av)
 		ifile >> base_arr[i];
 	ifile.close();
 
-	quick_sort_1(base_arr, ofile);
+	quick_sort(base_arr, ofile, q1_partition);
+	quick_sort(base_arr, ofile, q2_partition);
 
 	ofile.close();
 	return (0);
