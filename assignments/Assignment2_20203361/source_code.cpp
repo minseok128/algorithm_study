@@ -9,15 +9,16 @@
 using namespace std;
 using namespace std::chrono;
 
-std::random_device rd;
-std::mt19937 gen(rd());
+random_device rd;
+mt19937 gen(rd());
+uniform_int_distribution<> dis;
+
 static void	print_array(string type, vector<int> &arr,
 	ofstream &ofile, high_resolution_clock::time_point &start);
 
 int	q2_partition(vector<int> &arr, int l, int r)
 {
-	std::uniform_int_distribution<> dis(l, r);
-	swap(arr[r], arr[dis(gen)]);
+	swap(arr[r], arr[(unsigned int)dis(gen) % (r - l) + l]);
 
 	int	pivot = arr[r];
 	int	i = l - 1;
