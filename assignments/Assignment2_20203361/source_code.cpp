@@ -9,13 +9,16 @@
 using namespace std;
 using namespace std::chrono;
 
-random_device rd;
-mt19937 gen(rd());
-uniform_int_distribution<> dis;
 
 static void	print_array(string type, vector<int> &arr,
 	ofstream &ofile, high_resolution_clock::time_point &start);
 
+// --------normal quick sort & randomized quick sort--------
+random_device rd;
+mt19937 gen(rd());
+uniform_int_distribution<> dis;
+
+// --------randomized pivot--------
 int	q2_partition(vector<int> &arr, int l, int r)
 {
 	swap(arr[r], arr[(unsigned int)dis(gen) % (r - l) + l]);
@@ -33,6 +36,7 @@ int	q2_partition(vector<int> &arr, int l, int r)
 	return (i + 1);
 }
 
+// --------right most pivot--------
 int	q1_partition(vector<int> &arr, int l, int r)
 {
 	int	pivot = arr[r];
@@ -59,7 +63,6 @@ void	quick_divied(vector<int> &arr, int l, int r,
 	quick_divied(arr, l, p - 1, f);
 	quick_divied(arr, p + 1, r, f);
 }
-
 
 void	quick_sort(vector<int> &base_arr, ofstream &ofile,
 	int (*f)(vector<int> &arr, int l, int r))
