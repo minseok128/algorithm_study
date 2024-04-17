@@ -9,3 +9,4 @@ with open("input.txt", "w") as file:
     for _ in range(SIZE):
         number = random.randint(R_RANGE[0], R_RANGE[1])
         file.write(str(number) + " ")
+        # file.write(str(_) + " ")
