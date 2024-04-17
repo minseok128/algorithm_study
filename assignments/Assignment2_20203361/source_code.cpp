@@ -69,12 +69,36 @@ void	quick_sort(vector<int> &base_arr, ofstream &ofile,
 {
 	auto		start = high_resolution_clock::now();
 	int			size = base_arr.size();
-	vector<int>	arr(base_arr), tmp(size);
+	vector<int>	arr(base_arr);
 
 	quick_divied(arr, 0, size - 1, f);
 
 	print_array("time", arr, ofile, start);
 	ofile << '\n';
+}
+
+// --------tail-recursive & randomized--------
+void	tr_quick_divied(vector<int> &arr, int l, int r)
+{
+	int	p;
+
+	if (l >= r)
+		return ;
+	p = q2_partition(arr, l, r);
+	if (l - p < r - p)
+		tr_quick_divied(arr, l, p - 1);
+	tr_quick_divied(arr, p + 1, r);
+}
+
+void	tr_quick_sort(vector<int> &base_arr, ofstream &ofile)
+{
+	auto		start = high_resolution_clock::now();
+	int			size = base_arr.size();
+	vector<int>	arr(base_arr);
+
+	tr_quick_divied(arr, 0, size - 1);
+
+	print_array("time", arr, ofile, start);
 }
 
 // --------utils--------
