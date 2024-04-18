@@ -82,12 +82,20 @@ void	tr_quick_divied(vector<int> &arr, int l, int r)
 {
 	int	p;
 
-	if (l >= r)
-		return ;
-	p = q2_partition(arr, l, r);
-	if (l - p < r - p)
-		tr_quick_divied(arr, l, p - 1);
-	tr_quick_divied(arr, p + 1, r);
+	while (l < r)
+	{
+		p = q2_partition(arr, l, r);
+		if (l - p < r - p)
+		{
+			tr_quick_divied(arr, l, p - 1);
+			l = p + 1;
+		}
+		else
+		{
+			tr_quick_divied(arr, p + 1, r);
+			r = p - 1;
+		}
+	}
 }
 
 void	tr_quick_sort(vector<int> &base_arr, ofstream &ofile)
@@ -142,6 +150,7 @@ int main(int ac, char **av)
 
 	quick_sort(base_arr, ofile, q1_partition);
 	quick_sort(base_arr, ofile, q2_partition);
+	tr_quick_sort(base_arr, ofile);
 
 	ofile.close();
 	return (0);
